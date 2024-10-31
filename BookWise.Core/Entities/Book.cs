@@ -20,7 +20,7 @@ public class Book : BaseEntity
         RatingAverage = null;
         RatingQuantity = 0;
         Ratings = [];
-        RentalHistory = [];
+        Loans = [];
     }
 
     public string Title { get; private set; }
@@ -35,35 +35,35 @@ public class Book : BaseEntity
     public float? RatingAverage { get; private set; }
     public int RatingQuantity { get; private set; }
     public List<Rating> Ratings { get; private set; }
-
-    public List<User> RentalHistory { get; private set; }
-    public User? CurrentRenter { get; private set; }
     
-    public void RentedBook(User user)
-    {
-        if (Status == EnumBookStatus.Available && CurrentRenter is null)
-        {
-            CurrentRenter = user;
-            Status = EnumBookStatus.Rented;
-        }
-        else
-        {
-            throw new InvalidOperationException("O livro já está alugado.");
-        }
-    }
-
-    public void ReturnBook()
-    {
-        if (Status == EnumBookStatus.Rented && CurrentRenter != null)
-        {
-            RentalHistory.Add(CurrentRenter);
-            CurrentRenter = null;
-            Status = EnumBookStatus.Available;
-        }
-        else
-        {
-            throw new InvalidOperationException("O livro não está alugado.");
-        }
-    }
+    public List<Loan> Loans { get; private set; }
+    
+    // #Todo: Adicionar regra na classe Service
+    // public void RentedBook(User user)
+    // {
+    //     if (Status == EnumBookStatus.Available && CurrentRenter is null)
+    //     {
+    //         CurrentRenter = user;
+    //         Status = EnumBookStatus.Rented;
+    //     }
+    //     else
+    //     {
+    //         throw new InvalidOperationException("O livro já está alugado.");
+    //     }
+    // }
+    //
+    // public void ReturnBook()
+    // {
+    //     if (Status == EnumBookStatus.Rented && CurrentRenter != null)
+    //     {
+    //         RentalHistory.Add(CurrentRenter);
+    //         CurrentRenter = null;
+    //         Status = EnumBookStatus.Available;
+    //     }
+    //     else
+    //     {
+    //         throw new InvalidOperationException("O livro não está alugado.");
+    //     }
+    // }
     
 }
