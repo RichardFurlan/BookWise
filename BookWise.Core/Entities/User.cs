@@ -11,11 +11,11 @@ public class User : BaseEntity
         Password = password;
         BirthDate = birthDate;
         Active = true;
-
-        RentedBooks = [];
+        
         ProfilePictureUrl = "";
         Ratings = [];
         Notifications = [];
+        Loans = [];
     }
 
     public string FullName { get; private set; }
@@ -24,10 +24,10 @@ public class User : BaseEntity
     public DateTime BirthDate { get; private set; }
     public bool Active { get; private set; }
     public EnumUserRole Role { get; private set; }
-    public List<Book> RentedBooks { get; private set; }
     public string ProfilePictureUrl { get; private set; }
     public List<Rating> Ratings { get; private set; }
     public List<Notification> Notifications { get; private set; }
+    public List<Loan> Loans { get; private set; }
 
 
 }
