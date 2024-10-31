@@ -1,3 +1,5 @@
+using BookWise.Core.Enum;
+
 namespace BookWise.Core.Entities;
 
 public class Loan : BaseEntity
@@ -20,4 +22,5 @@ public class Loan : BaseEntity
     public User User { get; private set; }
     public int IdBook { get; private set; }
     public Book Book { get; private set; }
+    public EnumLoanStatus Status { get; set; }
 }

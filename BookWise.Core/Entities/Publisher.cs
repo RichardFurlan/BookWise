@@ -1,6 +1,6 @@
 namespace BookWise.Core.Entities;
 
-public class Publisher
+public class Publisher : BaseEntity
 {
     public Publisher(string name, string address)
     {
