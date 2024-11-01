@@ -56,12 +56,12 @@ public class BookWiseDbContext : DbContext
                 
                 e.HasOne(l => l.User)
                     .WithMany(u => u.Loans)
-                    .HasForeignKey(l => l.IdUser)
+                    .HasForeignKey(l => l.UserId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(l => l.Book)
                     .WithMany(b => b.Loans)
-                    .HasForeignKey(l => l.IdBook)
+                    .HasForeignKey(l => l.BookId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
@@ -72,7 +72,7 @@ public class BookWiseDbContext : DbContext
 
                 e.HasOne(n => n.User)
                     .WithMany(u => u.Notifications)
-                    .HasForeignKey(n => n.IdUser)
+                    .HasForeignKey(n => n.UserId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.Property(n => n.Content)
