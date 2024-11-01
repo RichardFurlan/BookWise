@@ -46,6 +46,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public void Update(T entity)
     {
+        entity.MarkAsUpdated();
         _dbSet.Update(entity);
     }
 }
