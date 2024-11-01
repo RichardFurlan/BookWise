@@ -25,7 +25,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await _dbSet.ToListAsync();
     }
 
-    public async Task<bool> ExistsAsync(int id)
+    public async Task<bool> ExistsByIdAsync(int id)
     {
         return await _dbSet.AnyAsync(e => e.Id == id);
     }
@@ -41,11 +41,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         if (entity == null)
             return;
         entity.SetAsDeleted();
-        UpdateAsync(entity);
+        Update(entity);
     }
 
-    public void UpdateAsync(T entity)
+    public void Update(T entity)
     {
+        entity.MarkAsUpdated();
         _dbSet.Update(entity);
     }
 }

@@ -13,7 +13,7 @@ public class UserRepository : IUserRepository
         _genericRepository = genericRepository;
         _context = context;
     }
-    public async Task<User?> GetDetailsById(int id)
+    public async Task<User?> GetWithDetailsByIdAsync(int id)
     {
         return await _context.Users
                                 .Include(u => u.Loans)
@@ -36,14 +36,14 @@ public class UserRepository : IUserRepository
             .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash);
     }
 
-    public async Task<bool> ExistAsync(int id)
+    public async Task<bool> ExistsByIdAsync(int id)
     {
-        return await _genericRepository.ExistsAsync(id);
+        return await _genericRepository.ExistsByIdAsync(id);
     }
 
-    public void UpdateAsync(User user)
+    public void Update(User user)
     {
-        _genericRepository.UpdateAsync(user);
+        _genericRepository.Update(user);
     }
 
     public async Task AddAsync(User user)
