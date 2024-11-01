@@ -34,20 +34,24 @@ public class BookRepository : IBookRepository
         return _genericRepository.ExistsByIdAsync(id);
     }
 
-    public Task<IQueryable<Book>> GetPaginatedAsync(string search, int page, int size)
+    public async Task<IEnumerable<Book>> GetPaginatedAsync(string search, int page, int size)
     {
-        throw new NotImplementedException();
+        return await _genericRepository
+            .GetByCondition(b => b.Title.Contains(search))
+            .Skip((page - 1) * size)
+            .Take(size)
+            .ToListAsync();
     }
 
     public async Task<Book?> GetWithDetailsByIdAsync(int id)
     {
-       return await _context.Books
-           .Include(b => b.Ratings)
-           .ThenInclude(r => r.User)
-           .Include(b => b.Loans)
-           .ThenInclude(l => l.User)
-           .SingleOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
-       
+        return await _genericRepository
+            .GetByIdQueryable(id)
+            .Include(b => b.Ratings)
+            .ThenInclude(r => r.User)
+            .Include(b => b.Loans)
+            .ThenInclude(l => l.User)
+            .SingleOrDefaultAsync();;
     }
 
     public async Task DeleteAsync(int id)

@@ -4,10 +4,9 @@ namespace BookWise.Core.Entities;
 
 public class Book : BaseEntity
 {
-    public Book(string title, List<Author> authors, string isbn, DateTime yearOfPublication, int edition, int publisherId, EnumLenguage lenguage, EnumBookStatus status, int numberOfPage) : base()
+    public Book(string title, string isbn, DateTime yearOfPublication, int edition, int publisherId, EnumLenguage lenguage, EnumBookStatus status, int numberOfPage) : base()
     {
         Title = title;
-        Authors = authors;
         Isbn = isbn;
         YearOfPublication = yearOfPublication;
         Edition = edition;
@@ -21,10 +20,10 @@ public class Book : BaseEntity
         RatingQuantity = 0;
         Ratings = [];
         Loans = [];
+        Authors = [];
     }
 
     public string Title { get; private set; }
-    public List<Author> Authors { get; private set; }
     public string Isbn { get; private set; }
     public DateTime YearOfPublication { get; private set; }
     public int Edition { get; private set; }
@@ -38,6 +37,7 @@ public class Book : BaseEntity
     public List<Rating> Ratings { get; private set; }
     
     public List<Loan> Loans { get; private set; }
+    public List<Author> Authors { get; private set; }
     
     // #Todo: Adicionar regra na classe Service
     // public void RentedBook(User user)

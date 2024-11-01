@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using BookWise.Core.Entities;
 using BookWise.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,25 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public async Task<T?> GetByIdAsync(int id)
     {
-        return await _dbSet.SingleOrDefaultAsync(p => p.Id == id);
+        return await _dbSet.SingleOrDefaultAsync(g => g.Id == id);
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public async Task<T?> GetByConditionWithId(Expression<Func<T, bool>> expression)
     {
-        return await _dbSet.ToListAsync();
+        return await _dbSet.SingleOrDefaultAsync(expression);
+    }
+    
+    public IQueryable<T> GetByIdQueryable(int id)
+    {
+        return _dbSet.Where(e => e.Id == id);
+    }
+    public  IQueryable<T> GetAll()
+    {
+        return _dbSet;
+    }
+    public IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression)
+    {
+        return _dbSet.Where(expression);
     }
 
     public async Task<bool> ExistsByIdAsync(int id)
