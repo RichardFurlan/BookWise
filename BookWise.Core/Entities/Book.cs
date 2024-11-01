@@ -4,14 +4,14 @@ namespace BookWise.Core.Entities;
 
 public class Book : BaseEntity
 {
-    public Book(string title, List<Author>? authors, string isbn, DateTime yearOfPublication, int edition, Publisher publisher, EnumLenguage lenguage, EnumBookStatus status, int numberOfPage) : base()
+    public Book(string title, List<Author> authors, string isbn, DateTime yearOfPublication, int edition, int publisherId, EnumLenguage lenguage, EnumBookStatus status, int numberOfPage) : base()
     {
         Title = title;
-        Author = authors ?? [];
-        ISBN = isbn;
+        Authors = authors;
+        Isbn = isbn;
         YearOfPublication = yearOfPublication;
         Edition = edition;
-        Publisher = publisher;
+        PublisherId = publisherId;
         Lenguage = lenguage;
         Status = status;
         NumberOfPage = numberOfPage;
@@ -24,10 +24,11 @@ public class Book : BaseEntity
     }
 
     public string Title { get; private set; }
-    public List<Author> Author { get; private set; }
-    public string ISBN { get; private set; }
+    public List<Author> Authors { get; private set; }
+    public string Isbn { get; private set; }
     public DateTime YearOfPublication { get; private set; }
     public int Edition { get; private set; }
+    public int PublisherId { get; private set; }
     public Publisher Publisher { get; private set; }
     public EnumLenguage Lenguage { get; private set; }
     public EnumBookStatus Status { get; private set; }
