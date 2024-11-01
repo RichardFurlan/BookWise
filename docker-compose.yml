@@ -1,6 +1,5 @@
 ﻿services:
   bookwise.api:
-    image: bookwise.api
     build:
       context: .
       dockerfile: BookWise.API/Dockerfile
