@@ -15,7 +15,8 @@ public class UserRepository : IUserRepository
     }
     public async Task<User?> GetWithDetailsByIdAsync(int id)
     {
-        return await _context.Users
+        return await _genericRepository
+                                .GetByIdQueryable(id)
                                 .Include(u => u.Loans)
                                 .ThenInclude(u => u.Book)
                                 .Include(u => u.Ratings)
@@ -25,17 +26,13 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetByIdAsync(int id)
     {
-        var user = await _genericRepository.GetByIdAsync(id);
-        return user;
+        return await _genericRepository.GetByIdAsync(id);
     }
 
     public async Task<User?> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
     {
-        return await _context
-            .Users
-            .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash);
+        return await _genericRepository.GetByConditionWithId(u => u.Email == email && u.Password == passwordHash);
     }
-
     public async Task<bool> ExistsByIdAsync(int id)
     {
         return await _genericRepository.ExistsByIdAsync(id);
