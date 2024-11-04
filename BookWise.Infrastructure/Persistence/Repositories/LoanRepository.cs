@@ -52,7 +52,7 @@ public class LoanRepository : ILoanRepository
     public async Task<IEnumerable<Loan>> GetPaginatedAsync(string search, int page, int size)
     {
         return await _genericRepository
-            .GetByCondition(l => l.Book.Title.Contains(search) || l.User.FullName.Contains(search))
+            .GetByCondition(l => string.IsNullOrEmpty(search) || l.Book.Title.Contains(search) || l.User.FullName.Contains(search))
             .Skip((page - 1) * size)
             .Take(size)
             .ToListAsync();

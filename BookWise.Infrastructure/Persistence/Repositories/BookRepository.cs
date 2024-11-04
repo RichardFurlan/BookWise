@@ -37,7 +37,7 @@ public class BookRepository : IBookRepository
     public async Task<IEnumerable<Book>> GetPaginatedAsync(string search, int page, int size)
     {
         return await _genericRepository
-            .GetByCondition(b => b.Title.Contains(search))
+            .GetByCondition(b => string.IsNullOrEmpty(search) || b.Title.Contains(search))
             .Skip((page - 1) * size)
             .Take(size)
             .ToListAsync();

@@ -31,7 +31,7 @@ public class AuthorRepository : IAuthorRepository
     public async Task<IEnumerable<Author>> GetPaginatedAsync(string search, int page, int size)
     {
         return await _genericRepository
-            .GetByCondition(p => p.Name.Contains(search))
+            .GetByCondition(p => string.IsNullOrEmpty(search) || p.Name.Contains(search))
             .Skip((page - 1 ) * size)
             .Take(size)
             .ToListAsync();;
