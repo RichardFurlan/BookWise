@@ -22,7 +22,7 @@ public class LoanRepository : ILoanRepository
 
     public async Task<Loan?> GetByIdAsync(int id)
     {
-        return await _genericRepository.GetByIdAsync(id);
+        return await _genericRepository.GetSingleByConditionAsync(l => l.Id == id);
     }
 
     public async Task<bool> ExistsByIdAsync(int id)
@@ -61,11 +61,10 @@ public class LoanRepository : ILoanRepository
     public async Task<Loan?> GetWithDetailsByIdAsync(int id)
     {
         return await _genericRepository
-            .GetByIdQueryable(id)
+            .GetByCondition(l => l.Id == id)
             .Include(l => l.User)
             .Include(l => l.Book)
             .SingleOrDefaultAsync();
-
     }
 
     public async Task DeleteAsync(int id)

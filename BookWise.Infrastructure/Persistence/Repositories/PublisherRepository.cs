@@ -20,7 +20,7 @@ public class PublisherRepository : IPublisherRepository
 
     public async Task<Publisher?> GetByIdAsync(int id)
     {
-        return await _genericRepository.GetByIdAsync(id);
+        return await _genericRepository.GetSingleByConditionAsync(p => p.Id == id);
     }
 
     public async Task<bool> ExistsByIdAsync(int id)

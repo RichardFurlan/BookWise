@@ -16,27 +16,18 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         _dbSet = _context.Set<T>();
     }
 
-    public async Task<T?> GetByIdAsync(int id)
-    {
-        return await _dbSet.SingleOrDefaultAsync(g => g.Id == id);
-    }
-
-    public async Task<T?> GetByConditionWithId(Expression<Func<T, bool>> expression)
+    public async Task<T?> GetSingleByConditionAsync(Expression<Func<T, bool>> expression)
     {
         return await _dbSet.SingleOrDefaultAsync(expression);
     }
     
-    public IQueryable<T> GetByIdQueryable(int id)
-    {
-        return _dbSet.Where(e => e.Id == id);
-    }
     public  IQueryable<T> GetAll()
     {
-        return _dbSet;
+        return _dbSet.Where(entity => !entity.IsDeleted);
     }
     public IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression)
     {
-        return _dbSet.Where(expression);
+        return GetAll().Where(expression);
     }
 
     public async Task<bool> ExistsByIdAsync(int id)
@@ -51,7 +42,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public async Task DeleteAsync(int id)
     {
-        var entity = await GetByIdAsync(id);
+        var entity = await GetSingleByConditionAsync(e => e.Id == id);
         if (entity == null)
             return;
         entity.SetAsDeleted();
