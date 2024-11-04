@@ -21,7 +21,7 @@ public class BookRepository : IBookRepository
 
     public async Task<Book?> GetByIdAsync(int id)
     {
-        return await _genericRepository.GetByIdAsync(id);
+        return await _genericRepository.GetSingleByConditionAsync(b => b.Id == id);
     }
 
     public void Update(Book book)
@@ -46,12 +46,12 @@ public class BookRepository : IBookRepository
     public async Task<Book?> GetWithDetailsByIdAsync(int id)
     {
         return await _genericRepository
-            .GetByIdQueryable(id)
+            .GetByCondition(b => b.Id == id)
             .Include(b => b.Ratings)
             .ThenInclude(r => r.User)
             .Include(b => b.Loans)
             .ThenInclude(l => l.User)
-            .SingleOrDefaultAsync();;
+            .SingleOrDefaultAsync();
     }
 
     public async Task DeleteAsync(int id)
