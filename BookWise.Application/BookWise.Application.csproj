@@ -13,16 +13,14 @@
 
     <ItemGroup>
       <Folder Include="Commands\Author\" />
-      <Folder Include="Commands\Book\DeleteBook\" />
       <Folder Include="Commands\Book\UpdateBook\" />
-      <Folder Include="Commands\Publisher\" />
-      <Folder Include="Commands\User\InsertProfilePicture\" />
-      <Folder Include="Commands\User\LoginUser\" />
+      <Folder Include="Commands\Publisher\UpdatePublisher\" />
       <Folder Include="Queries\" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="MediatR" Version="12.4.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     </ItemGroup>
 
 </Project>
