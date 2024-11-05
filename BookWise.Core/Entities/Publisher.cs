@@ -1,8 +1,10 @@
+using BookWise.Core.ValueObjects;
+
 namespace BookWise.Core.Entities;
 
 public class Publisher : BaseEntity
 {
-    public Publisher(string name, string address)
+    public Publisher(string name, Address address)
     {
         Name = name;
         Address = address;
@@ -11,6 +13,6 @@ public class Publisher : BaseEntity
     }
 
     public string Name { get; private set; }
-    public string Address { get; private set; }
+    public Address Address { get; private set; }
     public List<Book> Books { get; private set; }
 }
