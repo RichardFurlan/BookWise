@@ -17,5 +17,4 @@ public interface ILoanRepository
 
     Task<IEnumerable<Loan>> GetPaginatedAsync(string search, int page, int size);
     Task<Loan?> GetWithDetailsByIdAsync(int id);
-    Task DeleteAsync(int id);
 }

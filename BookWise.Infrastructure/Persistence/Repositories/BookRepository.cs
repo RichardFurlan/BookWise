@@ -53,9 +53,4 @@ public class BookRepository : IBookRepository
             .ThenInclude(l => l.User)
             .SingleOrDefaultAsync();
     }
-
-    public async Task DeleteAsync(int id)
-    {
-        await _genericRepository.DeleteAsync(id);
-    }
 }

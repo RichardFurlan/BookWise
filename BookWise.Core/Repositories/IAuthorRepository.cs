@@ -8,6 +8,5 @@ public interface IAuthorRepository
     Task<Author?> GetByIdAsync(int id);
     Task<bool> ExistsByIdAsync(int id);
     Task<IEnumerable<Author>> GetPaginatedAsync(string search, int page, int size);
-    Task DeleteAsync(int id);
     void Update(Author author);
 }

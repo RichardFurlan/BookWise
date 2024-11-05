@@ -10,6 +10,5 @@ public interface IGenericRepository<T> where T : BaseEntity
     IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression); 
     Task<bool> ExistsByIdAsync(int id);
     Task AddAsync(T entity);
-    Task DeleteAsync(int id);
     void Update(T entity);
 }

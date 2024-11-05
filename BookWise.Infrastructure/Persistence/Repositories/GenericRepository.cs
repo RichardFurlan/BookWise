@@ -40,15 +40,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         await _dbSet.AddAsync(entity);
     }
 
-    public async Task DeleteAsync(int id)
-    {
-        var entity = await GetSingleByConditionAsync(e => e.Id == id);
-        if (entity == null)
-            return;
-        entity.SetAsDeleted();
-        Update(entity);
-    }
-
     public void Update(T entity)
     {
         entity.MarkAsUpdated();
