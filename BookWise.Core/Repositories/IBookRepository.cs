@@ -10,5 +10,4 @@ public interface IBookRepository
     Task<bool> ExistsByIdAsync(int id);
     Task<IEnumerable<Book>> GetPaginatedAsync(string search, int page, int size);
     Task<Book?> GetWithDetailsByIdAsync(int id);
-    Task DeleteAsync(int id);
 }

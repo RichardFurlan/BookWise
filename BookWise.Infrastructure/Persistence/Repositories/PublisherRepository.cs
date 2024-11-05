@@ -37,11 +37,6 @@ public class PublisherRepository : IPublisherRepository
             .ToListAsync();
     }
 
-    public async Task DeleteAsync(int id)
-    {
-        await _genericRepository.DeleteAsync(id);
-    }
-
     public void Update(Publisher publisher)
     {
         _genericRepository.Update(publisher);

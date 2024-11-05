@@ -27,9 +27,4 @@ public class NotificationRepository : INotificationRepository
     {
         return await _genericRepository.GetByCondition(n => n.IsRead).ToListAsync();
     }
-
-    public async Task DeleteAsync(int id)
-    {
-        await _genericRepository.DeleteAsync(id);
-    }
 }

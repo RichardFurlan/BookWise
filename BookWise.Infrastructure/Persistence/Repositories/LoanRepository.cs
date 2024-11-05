@@ -66,9 +66,4 @@ public class LoanRepository : ILoanRepository
             .Include(l => l.Book)
             .SingleOrDefaultAsync();
     }
-
-    public async Task DeleteAsync(int id)
-    {
-        await _genericRepository.DeleteAsync(id);
-    }
 }

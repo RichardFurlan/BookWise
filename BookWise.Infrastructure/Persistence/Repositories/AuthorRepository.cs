@@ -36,12 +36,7 @@ public class AuthorRepository : IAuthorRepository
             .Take(size)
             .ToListAsync();;
     }
-
-    public async Task DeleteAsync(int id)
-    {
-        await _genericRepository.DeleteAsync(id);
-    }
-
+    
     public void Update(Author author)
     {
         _genericRepository.Update(author);

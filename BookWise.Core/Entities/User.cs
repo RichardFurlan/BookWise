@@ -31,4 +31,8 @@ public class User : BaseEntity
     public List<Loan> Loans { get; private set; }
 
 
+    public void UpdateProfilePicture(string profilePictureUrl)
+    {
+        ProfilePictureUrl = profilePictureUrl;
+    }
 }
