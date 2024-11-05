@@ -11,4 +11,18 @@
       <ProjectReference Include="..\BookWise.Infrastructure\BookWise.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Commands\Author\" />
+      <Folder Include="Commands\Book\DeleteBook\" />
+      <Folder Include="Commands\Book\UpdateBook\" />
+      <Folder Include="Commands\Publisher\" />
+      <Folder Include="Commands\User\InsertProfilePicture\" />
+      <Folder Include="Commands\User\LoginUser\" />
+      <Folder Include="Queries\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.4.1" />
+    </ItemGroup>
+
 </Project>
