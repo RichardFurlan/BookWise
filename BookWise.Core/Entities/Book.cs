@@ -72,4 +72,17 @@ public class Book : BaseEntity
         if (!Authors.Contains(author))
             Authors.Add(author);
     }
+
+    // #Todo: Analisar a regra para Update
+    public void UpdateDetails(string title, int edition, DateTime yearOfPublication, EnumLenguage lenguage, int numberOfPages)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+            throw new ArgumentException("O título não pode estar vazio.");
+        
+        Title = title;
+        Edition = edition;
+        YearOfPublication = yearOfPublication;
+        Lenguage = lenguage;
+        NumberOfPage = numberOfPages;
+    }
 }
