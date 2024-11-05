@@ -6,7 +6,8 @@ namespace BookWise.API.Controllers;
 public class BooksController : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAll(int page, int size = 10, string search = "")
+    // Todo: Manter page no valor padrão 1 
+    public async Task<IActionResult> GetAll(int page = 1, int size = 10, string search = "")
     {
         return Ok();
     }

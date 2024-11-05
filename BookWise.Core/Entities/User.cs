@@ -11,7 +11,8 @@ public class User : BaseEntity
         Password = password;
         BirthDate = birthDate;
         Active = true;
-        
+
+        Role = EnumUserRole.Unknow;
         ProfilePictureUrl = "";
         Ratings = [];
         Notifications = [];
