@@ -67,4 +67,9 @@ public class Book : BaseEntity
     //     }
     // }
     
+    public void AddAuthor(Author author)
+    {
+        if (!Authors.Contains(author))
+            Authors.Add(author);
+    }
 }
