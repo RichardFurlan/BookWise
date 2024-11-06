@@ -28,6 +28,16 @@ public class BookWiseDbContext : DbContext
             });
 
         builder
+            .Entity<Author>(e =>
+            {
+                e.HasKey(a => a.Id);
+
+                e.HasMany(a => a.Books)
+                    .WithMany(a => a.Authors)
+                    .UsingEntity(j => j.ToTable("AuthorBooks"));
+            });
+
+        builder
             .Entity<User>(e =>
             {
                 e.HasKey(u => u.Id);
@@ -46,6 +56,11 @@ public class BookWiseDbContext : DbContext
                 e.HasMany(b => b.Ratings)
                     .WithOne(r => r.Book)
                     .HasForeignKey(l => l.IdBook)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasMany(b => b.Loans)
+                    .WithOne(l => l.Book)
+                    .HasForeignKey(l => l.BookId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
