@@ -23,6 +23,13 @@ public class AuthorRepository : IAuthorRepository
         return await _genericRepository.GetSingleByConditionAsync(p => p.Id == id);
     }
 
+    public async Task<List<Author>> GetByIdsAsync(List<int> ids)
+    {
+        return await _genericRepository
+            .GetByCondition(a => ids.Contains(a.Id))
+            .ToListAsync();
+    }
+
     public async Task<bool> ExistsByIdAsync(int id)
     {
         return await _genericRepository.ExistsByIdAsync(id);
