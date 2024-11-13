@@ -21,7 +21,7 @@ public class RatingsRepository : IRatingRepository
     public async Task<IEnumerable<Rating>> GetRatingsByBookIdAsync(int bookId, int page, int size)
     {
         return await _genericRepository
-            .GetByCondition(r => r.IdBook == bookId)
+            .GetByCondition(r => r.BookId == bookId)
             .Skip((page -1) * size)
             .Take(size)
             .ToListAsync();
