@@ -44,7 +44,7 @@ public class BookWiseDbContext : DbContext
 
                 e.HasMany(u => u.Ratings)
                     .WithOne(r => r.User)
-                    .HasForeignKey(r => r.IdUser)
+                    .HasForeignKey(r => r.UserId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
@@ -55,7 +55,7 @@ public class BookWiseDbContext : DbContext
                 
                 e.HasMany(b => b.Ratings)
                     .WithOne(r => r.Book)
-                    .HasForeignKey(l => l.IdBook)
+                    .HasForeignKey(l => l.BookId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasMany(b => b.Loans)

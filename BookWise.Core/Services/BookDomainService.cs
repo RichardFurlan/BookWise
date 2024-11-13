@@ -14,14 +14,15 @@ public class BookDomainService
     
     public async Task AddAuthorsAsync(Book book, List<int> authorIds)
     {
-        foreach (var authorId in authorIds)
+        var authors = await _authorRepository.GetByIdsAsync(authorIds);
+        if (authors.Count != authorIds.Count)
         {
-            var author = await _authorRepository.GetByIdAsync(authorId);
-            if (author == null)
-            {
-                throw new KeyNotFoundException($"Autor com ID {authorId} não encontrado."); 
-            } 
-            
+            var missingIds = authorIds.Except(authors.Select(a => a.Id)).ToList();
+            throw new KeyNotFoundException($"Os seguintes autores não foram encontrados: {string.Join(", ", missingIds)}"); 
+        }
+        
+        foreach (var author in authors)
+        {
             book.AddAuthor(author);
         }
     }

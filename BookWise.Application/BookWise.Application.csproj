@@ -16,7 +16,6 @@
       <Folder Include="Commands\Loan\" />
       <Folder Include="Commands\Notification\" />
       <Folder Include="Commands\Publisher\UpdatePublisher\" />
-      <Folder Include="Commands\Rating\" />
       <Folder Include="Queries\" />
     </ItemGroup>
 

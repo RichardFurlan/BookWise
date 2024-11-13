@@ -32,7 +32,7 @@ public class InsertBookHandler : IRequestHandler<InsertBookCommand, ResultViewMo
             await _bookDomainService.AddAuthorsAsync(book, request.AuthorsId);
             await _bookRepository.AddAsync(book);
             
-            var saveResult = await _unitOfWork.SaveChangesAsync();
+            var saveResult = await _unitOfWork.SaveChangesAsync(cancellationToken);
             if (saveResult == 0)
                 return ResultViewModel<int>.Error("Erro ao salvar o livro. Nenhuma mudança foi detectada.");
             
