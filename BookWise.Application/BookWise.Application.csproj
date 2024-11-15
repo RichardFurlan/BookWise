@@ -14,7 +14,6 @@
     <ItemGroup>
       <Folder Include="Commands\Book\UpdateBook\" />
       <Folder Include="Commands\Loan\" />
-      <Folder Include="Commands\Notification\MarkAsReadNotification\" />
       <Folder Include="Commands\Publisher\UpdatePublisher\" />
       <Folder Include="Queries\" />
     </ItemGroup>
