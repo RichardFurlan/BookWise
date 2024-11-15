@@ -18,13 +18,25 @@ public class NotificationRepository : INotificationRepository
         await _genericRepository.AddAsync(notification);
     }
 
+    public async Task<Notification?> GetByIdAsync(int id)
+    {
+        return await _genericRepository.GetSingleByConditionAsync(n => n.Id == id);
+    }
+
     public async Task<IEnumerable<Notification>> GetNotificationsByUserId(int id)
     {
         return await _genericRepository.GetByCondition(n => n.UserId == id).ToListAsync();
     }
 
-    public async Task<IEnumerable<Notification>> GetByReadStatusAsync(bool isRead)
+    public async Task<IEnumerable<Notification>> GetByReadStatusAsync(bool isRead = false)
     {
-        return await _genericRepository.GetByCondition(n => n.IsRead).ToListAsync();
+        return await _genericRepository
+                    .GetByCondition(n => n.IsRead == isRead)
+                    .ToListAsync();
+    }
+
+    public void Update(Notification notification)
+    {
+        _genericRepository.Update(notification);
     }
 }
