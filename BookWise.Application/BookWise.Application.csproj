@@ -13,7 +13,10 @@
 
     <ItemGroup>
       <Folder Include="Commands\Book\UpdateBook\" />
-      <Folder Include="Commands\Loan\" />
+      <Folder Include="Commands\Loan\CancelLoan\" />
+      <Folder Include="Commands\Loan\ExtendLoan\" />
+      <Folder Include="Commands\Loan\NotifyLoanOverdue\" />
+      <Folder Include="Commands\Loan\ReturnLoan\" />
       <Folder Include="Commands\Publisher\UpdatePublisher\" />
       <Folder Include="Queries\" />
     </ItemGroup>
