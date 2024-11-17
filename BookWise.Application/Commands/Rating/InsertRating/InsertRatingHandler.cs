@@ -21,12 +21,15 @@ public class InsertRatingHandler : IRequestHandler<InsertRatingCommand, ResultVi
 
     public async Task<ResultViewModel<int>> Handle(InsertRatingCommand request, CancellationToken cancellationToken)
     {
-        if (!await _bookRepository.ExistsByIdAsync(request.BookId))
+        var userExists = await _userRepository.ExistsByIdAsync(request.UserId);
+        var bookExists = await _bookRepository.ExistsByIdAsync(request.BookId);
+        
+        if (!bookExists)
         {
             return ResultViewModel<int>.Error("O livro especificado não foi encontrado.");
         }
 
-        if (!await _userRepository.ExistsByIdAsync(request.UserId))
+        if (!userExists)
         {
             return ResultViewModel<int>.Error("O usuario especificado não foi encontrado.");
         }
