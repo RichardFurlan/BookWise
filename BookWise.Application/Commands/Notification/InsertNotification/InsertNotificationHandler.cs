@@ -22,7 +22,7 @@ public class InsertNotificationHandler : IRequestHandler<InsertNotificationComma
         var userExists = await _userRepository.ExistsByIdAsync(request.UserId);
         if (!userExists)
         {
-            return (ResultViewModel<int>)ResultViewModel.Error("Usuário não encontrado");
+            return ResultViewModel<int>.Error("Usuário não encontrado");
         }
 
         var notification = request.ToEntity();
