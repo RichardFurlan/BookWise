@@ -19,6 +19,12 @@ public class Notification : BaseEntity
         if (IsRead) return false;
         IsRead = true;
         return true;
-
+    }
+    
+    public bool MarkAsUnread()
+    {
+        if (!IsRead) return false;
+        IsRead = false;
+        return true;
     }
 }
