@@ -4,11 +4,11 @@ namespace BookWise.Core.Entities;
 
 public class Book : BaseEntity
 {
-    public Book(string title, string isbn, DateTime yearOfPublication, int edition, int publisherId, EnumLenguage lenguage, EnumBookStatus status, int numberOfPage) : base()
+    public Book(string title, string isbn, DateTime publicationDate, int edition, int publisherId, EnumLenguage lenguage, EnumBookStatus status, int numberOfPage) : base()
     {
         Title = title;
         Isbn = isbn;
-        YearOfPublication = yearOfPublication;
+        PublicationDate = publicationDate;
         Edition = edition;
         PublisherId = publisherId;
         Lenguage = lenguage;
@@ -25,7 +25,7 @@ public class Book : BaseEntity
 
     public string Title { get; private set; }
     public string Isbn { get; private set; }
-    public DateTime YearOfPublication { get; private set; }
+    public DateTime PublicationDate { get; private set; }
     public int Edition { get; private set; }
     public int PublisherId { get; private set; }
     public Publisher Publisher { get; private set; }
@@ -81,7 +81,7 @@ public class Book : BaseEntity
         
         Title = title;
         Edition = edition;
-        YearOfPublication = yearOfPublication;
+        PublicationDate = yearOfPublication;
         Lenguage = lenguage;
         NumberOfPage = numberOfPages;
     }
