@@ -18,6 +18,15 @@ public class RatingsRepository : IRatingRepository
         await _genericRepository.AddAsync(rating);
     }
 
+    public async Task<Rating?> GetWithDetailsByIdAsync(int id)
+    {
+        return await _genericRepository
+            .GetByCondition(r => r.Id == id)
+            .Include(r => r.User)
+            .Include(r => r.Book)
+            .SingleOrDefaultAsync();
+    }
+
     public async Task<IEnumerable<Rating>> GetRatingsByBookIdAsync(int bookId, int page, int size)
     {
         return await _genericRepository
