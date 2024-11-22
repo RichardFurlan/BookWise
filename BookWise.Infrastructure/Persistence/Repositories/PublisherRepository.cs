@@ -20,7 +20,10 @@ public class PublisherRepository : IPublisherRepository
 
     public async Task<Publisher?> GetByIdAsync(int id)
     {
-        return await _genericRepository.GetSingleByConditionAsync(p => p.Id == id);
+        return await _genericRepository
+            .GetByCondition(p => p.Id == id)
+            .Include(p => p.Books)   
+            .SingleOrDefaultAsync();
     }
 
     public async Task<bool> ExistsByIdAsync(int id)
