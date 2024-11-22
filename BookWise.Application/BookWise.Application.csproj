@@ -18,7 +18,6 @@
       <Folder Include="Commands\Loan\NotifyLoanOverdue\" />
       <Folder Include="Commands\Loan\ReturnLoan\" />
       <Folder Include="Commands\Publisher\UpdatePublisher\" />
-      <Folder Include="Queries\Author\GetAuthorById\" />
       <Folder Include="Queries\Notification\" />
       <Folder Include="Queries\Publisher\GetPublisherById\" />
     </ItemGroup>
