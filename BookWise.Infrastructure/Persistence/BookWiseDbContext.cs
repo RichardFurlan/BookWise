@@ -1,4 +1,5 @@
 using BookWise.Core.Entities;
+using BookWise.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookWise.Infrastructure.Persistence;
@@ -25,6 +26,8 @@ public class BookWiseDbContext : DbContext
                 e.HasMany(p => p.Books)
                     .WithOne(b => b.Publisher)
                     .OnDelete(DeleteBehavior.Restrict);
+                
+                e.OwnsOne(p => p.Address, AddressConfiguration.ConfigureOwnedType);
             });
 
         builder
