@@ -20,7 +20,10 @@ public class AuthorRepository : IAuthorRepository
 
     public async Task<Author?> GetByIdAsync(int id)
     {
-        return await _genericRepository.GetSingleByConditionAsync(p => p.Id == id);
+        return await _genericRepository.
+            GetAll()
+            .Include(a => a.Books)
+            .SingleOrDefaultAsync(a => a.Id == id);
     }
 
     public async Task<List<Author>> GetByIdsAsync(List<int> ids)
