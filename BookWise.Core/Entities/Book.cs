@@ -16,7 +16,7 @@ public class Book : BaseEntity
         NumberOfPage = numberOfPage;
         
         
-        RatingAverage = null;
+        RatingAverage = 0.0f;
         RatingQuantity = 0;
         Ratings = [];
         Loans = [];
@@ -32,7 +32,7 @@ public class Book : BaseEntity
     public EnumLenguage Lenguage { get; private set; }
     public EnumBookStatus Status { get; private set; }
     public int NumberOfPage { get; private set; }
-    public float? RatingAverage { get; private set; }
+    public float RatingAverage { get; private set; }
     public int RatingQuantity { get; private set; }
     public List<Rating> Ratings { get; private set; }
     
