@@ -27,10 +27,12 @@ public class RatingsRepository : IRatingRepository
             .SingleOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Rating>> GetRatingsByBookIdAsync(int bookId, int page, int size)
+    public async Task<IEnumerable<Rating>> GetRatingsByBookIdAsync(int bookId, string search, int page, int size)
     {
         return await _genericRepository
             .GetByCondition(r => r.BookId == bookId)
+            .Include(r => r.User)
+            .Where(r => r.Content.Contains(search) || r.User.FullName.Contains(search))
             .Skip((page -1) * size)
             .Take(size)
             .ToListAsync();
