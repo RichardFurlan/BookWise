@@ -12,4 +12,13 @@ public class Author : BaseEntity
     public string FullName { get; private set; }
     public string Biography { get; private set; }
     public List<Book> Books { get; private set; }
+
+    #region Update
+    public void UpdateFullName(string newFullName)
+     => FullName = newFullName;
+    
+    public void UpdateBiography(string newBiography)
+     => Biography = newBiography;
+    #endregion
+
 }
