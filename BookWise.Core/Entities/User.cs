@@ -1,4 +1,5 @@
 using BookWise.Core.Enum;
+using BookWise.Core.ValueObjects;
 
 namespace BookWise.Core.Entities;
 
@@ -17,6 +18,7 @@ public class User : BaseEntity
         Ratings = [];
         Notifications = [];
         Loans = [];
+        Address = null;
     }
 
     public string FullName { get; private set; }
@@ -29,10 +31,20 @@ public class User : BaseEntity
     public List<Rating> Ratings { get; private set; }
     public List<Notification> Notifications { get; private set; }
     public List<Loan> Loans { get; private set; }
+    public Address? Address { get; private set; }
 
-
+    #region Updates
     public void UpdateProfilePicture(string profilePictureUrl)
-    {
-        ProfilePictureUrl = profilePictureUrl;
-    }
+        => ProfilePictureUrl = profilePictureUrl;
+
+    public void UpdateFullName(string newFullName)
+        => FullName = newFullName;
+    
+    public void UpdateAddress(Address address)
+        => Address = address;
+
+    public void UpdateBirthDate(DateTime birthDate)
+        => BirthDate = birthDate;
+
+    #endregion
 }
