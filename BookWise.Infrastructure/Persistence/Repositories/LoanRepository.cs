@@ -20,6 +20,11 @@ public class LoanRepository : ILoanRepository
         await _genericRepository.AddAsync(loan);
     }
 
+    public void Update(Loan loan)
+    {
+        _genericRepository.Update(loan);
+    }
+
     public async Task<Loan?> GetByIdAsync(int id)
     {
         return await _genericRepository.GetSingleByConditionAsync(l => l.Id == id);

@@ -74,7 +74,7 @@ public class BookWiseDbContext : DbContext
                 
                 e.HasOne(l => l.User)
                     .WithMany(u => u.Loans)
-                    .HasForeignKey(l => l.UserId)
+                    .HasForeignKey(l => l.BorrowerId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(l => l.Book)
