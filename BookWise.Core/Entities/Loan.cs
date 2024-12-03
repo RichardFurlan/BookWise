@@ -7,7 +7,7 @@ public class Loan : BaseEntity
     public Loan(decimal value, int userId, int bookId, int loanDurationDays = 15)
     {
         LoanDate = DateTime.Now.ToUniversalTime();
-        ExpectedReturnDate = LoanDate.AddDays(loanDurationDays); 
+        DueDate = LoanDate.AddDays(loanDurationDays); 
         Value = value;
         UserId = userId;
         BookId = bookId;
@@ -15,7 +15,7 @@ public class Loan : BaseEntity
     }
 
     public DateTime LoanDate { get; private set; }
-    public DateTime ExpectedReturnDate { get; private set; }
+    public DateTime DueDate { get; private set; }
     public DateTime? ReturnDate { get; private set; }
     public decimal Value { get; private set; }
     public int UserId { get; private set; }
@@ -34,9 +34,20 @@ public class Loan : BaseEntity
         ReturnDate = returnDate;
         Status = EnumLoanStatus.Completed; 
     }
+
+    public void Cancel() => Status = EnumLoanStatus.Canceled;
+    
     
     /// <summary>
     /// Verifica se o empréstimo está atrasado.
     /// </summary>
-    public bool IsOverdue() => ReturnDate == null && DateTime.Now > ExpectedReturnDate;
+    public bool IsOverdue() => ReturnDate == null && DateTime.Now > DueDate;
+
+    public void ExtendDueDate(DateTime newDueDate) => DueDate = newDueDate;
+
+    public void MarkAsReturned()
+    {
+        Status = EnumLoanStatus.Completed;
+        ReturnDate = DateTime.Now.ToUniversalTime();
+    }
 }
