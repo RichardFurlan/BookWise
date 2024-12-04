@@ -1,6 +1,6 @@
-using BookWise.Core.Entities;
+using BookWise.Application.DTOs;
 
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Publisher.GetPublisherById;
 
 public record PublisherViewModel(
     int Id,
@@ -9,7 +9,7 @@ public record PublisherViewModel(
     List<string> Books
 )
 {
-    public static PublisherViewModel FromEntity(Publisher entity)
+    public static PublisherViewModel FromEntity(Core.Entities.Publisher entity)
         => new(
             entity.Id,
             entity.Name,
