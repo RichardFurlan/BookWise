@@ -13,8 +13,6 @@
 
     <ItemGroup>
       <Folder Include="Commands\Book\UpdateBook\" />
-      <Folder Include="Queries\Loan\GetLoansByBook\" />
-      <Folder Include="Queries\Loan\GetLoansByUser\" />
     </ItemGroup>
 
     <ItemGroup>

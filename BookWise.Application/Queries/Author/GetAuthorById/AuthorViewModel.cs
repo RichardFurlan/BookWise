@@ -1,6 +1,4 @@
-using BookWise.Core.Entities;
-
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Author.GetAuthorById;
 
 public record AuthorViewModel(
     int Id,
@@ -9,7 +7,7 @@ public record AuthorViewModel(
     List<string> Books
 )
 {
-    public static AuthorViewModel FromEntity(Author entity)
+    public static AuthorViewModel FromEntity(Core.Entities.Author entity)
         => new(
             entity.Id,
             entity.FullName,

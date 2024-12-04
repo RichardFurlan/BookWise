@@ -71,4 +71,24 @@ public class LoanRepository : ILoanRepository
             .Include(l => l.Book)
             .SingleOrDefaultAsync();
     }
+    
+    public async Task<IEnumerable<Loan>> GetLoansByBookAsync(int bookId)
+    {
+        var query = _genericRepository
+            .GetByCondition(l => l.BookId == bookId)
+            .Include(l => l.User)  
+            .Include(l => l.Book); 
+        
+        return await query.ToListAsync();
+    }
+    
+    public async Task<IEnumerable<Loan>> GetLoansByUserAsync(int userId)
+    {
+        var query = _genericRepository
+            .GetByCondition(l => l.BorrowerId == userId)
+            .Include(l => l.User)  
+            .Include(l => l.Book); 
+
+        return await query.ToListAsync();
+    }
 }
