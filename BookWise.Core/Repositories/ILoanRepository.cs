@@ -8,6 +8,7 @@ public interface ILoanRepository
     Task AddAsync(Loan loan);
     void Update(Loan loan);
     Task<Loan?> GetByIdAsync(int id);
+    Task<Loan?> GetByIdWithDetailsAsync(int id);
     Task<IEnumerable<Loan>> GetLoansByBookAsync(int bookId);
     Task<IEnumerable<Loan>> GetLoansByUserAsync(int bookId);
     Task<bool> ExistsByIdAsync(int id);

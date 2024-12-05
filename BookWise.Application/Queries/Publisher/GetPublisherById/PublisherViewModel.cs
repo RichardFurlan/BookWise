@@ -1,4 +1,5 @@
 using BookWise.Application.DTOs;
+using BookWise.Application.Queries.Shared;
 
 namespace BookWise.Application.Queries.Publisher.GetPublisherById;
 

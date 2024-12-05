@@ -1,6 +1,4 @@
-using BookWise.Core.Entities;
-
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Rating.GetRatingById;
 
 public record RatingViewModel(
     int Id, 
@@ -14,7 +12,7 @@ public record RatingViewModel(
     int? RatingQuantity
     )
 {
-    public static RatingViewModel FromEntity(Rating entity) 
+    public static RatingViewModel FromEntity(Core.Entities.Rating entity) 
         => new(
             entity.Id, 
             entity.RatingValue, 

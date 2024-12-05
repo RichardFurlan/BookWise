@@ -1,7 +1,6 @@
 using BookWise.Application.Helpers;
-using BookWise.Core.Entities;
 
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Notification.GetNotificationByUserId;
 
 public record NotificationViewModel(
     int Id,
@@ -10,7 +9,7 @@ public record NotificationViewModel(
     bool IsRead
 )
 {
-    public static NotificationViewModel FromEntity(Notification entity)
+    public static NotificationViewModel FromEntity(Core.Entities.Notification entity)
         => new(
             entity.Id,
             entity.Content,

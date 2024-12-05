@@ -30,6 +30,15 @@ public class LoanRepository : ILoanRepository
         return await _genericRepository.GetSingleByConditionAsync(l => l.Id == id);
     }
 
+    public async Task<Loan?> GetByIdWithDetailsAsync(int id)
+    {
+        return await _genericRepository
+            .GetByCondition(l => l.Id == id)
+            .Include(l => l.User)
+            .Include(l => l.Book)
+            .SingleOrDefaultAsync();
+    }
+
     public async Task<bool> ExistsByIdAsync(int id)
     {
         return await _genericRepository.ExistsByIdAsync(id);
