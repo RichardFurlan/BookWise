@@ -1,7 +1,8 @@
-using BookWise.Core.Entities;
+using BookWise.Application.DTOs;
+using BookWise.Application.Queries.Loan.GetLoanById;
 using BookWise.Core.Enum;
 
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Book.GetBookById;
 
 public record BookViewModel(
     int Id,
@@ -18,7 +19,7 @@ public record BookViewModel(
     List<LoanViewModel> RecentLoans
     )
 {
-    public static BookViewModel FromEntity(Book entity)
+    public static BookViewModel FromEntity(Core.Entities.Book entity)
         => new(
             entity.Id,
             entity.Title,

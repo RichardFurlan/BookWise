@@ -1,6 +1,6 @@
 using BookWise.Core.ValueObjects;
 
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Shared;
 
 public record AddressViewModel(
     string Street, 

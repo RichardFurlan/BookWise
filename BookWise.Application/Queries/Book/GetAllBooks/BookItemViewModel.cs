@@ -1,6 +1,4 @@
-using BookWise.Core.Entities;
-
-namespace BookWise.Application.DTOs;
+namespace BookWise.Application.Queries.Book.GetAllBooks;
 
 public record BookItemViewModel(
     int Id,
@@ -12,7 +10,7 @@ public record BookItemViewModel(
     float RatingAvarege
 )
 {
-    public static BookItemViewModel FromEntity(Book entity)
+    public static BookItemViewModel FromEntity(Core.Entities.Book entity)
         => new(
             entity.Id,
             entity.Title,
