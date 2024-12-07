@@ -74,14 +74,13 @@ public class Book : BaseEntity
     }
 
     // #Todo: Analisar a regra para Update
-    public void UpdateDetails(string title, int edition, DateTime yearOfPublication, EnumLenguage lenguage, int numberOfPages)
+    public void UpdateDetails(string title, string isbn, int edition, DateTime publicationDate, EnumLenguage lenguage,
+        int numberOfPages )
     {
-        if (string.IsNullOrWhiteSpace(title))
-            throw new ArgumentException("O título não pode estar vazio.");
-        
         Title = title;
+        Isbn = isbn;
         Edition = edition;
-        PublicationDate = yearOfPublication;
+        PublicationDate = publicationDate;
         Lenguage = lenguage;
         NumberOfPage = numberOfPages;
     }
