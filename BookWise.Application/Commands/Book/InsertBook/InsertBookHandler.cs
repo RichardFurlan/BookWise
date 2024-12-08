@@ -1,4 +1,5 @@
 using BookWise.Application.DTOs;
+using BookWise.Core.Exceptions;
 using BookWise.Core.Repositories;
 using BookWise.Core.Services;
 using MediatR;
@@ -31,16 +32,20 @@ public class InsertBookHandler : IRequestHandler<InsertBookCommand, ResultViewMo
         {
             await _bookDomainService.AddAuthorsAsync(book, request.AuthorsId);
             await _bookRepository.AddAsync(book);
-            
+
             var saveResult = await _unitOfWork.SaveChangesAsync(cancellationToken);
             if (saveResult == 0)
                 return ResultViewModel<int>.Error("Erro ao salvar o livro. Nenhuma mudança foi detectada.");
-            
+
             return ResultViewModel<int>.Success(book.Id);
         }
-        catch (KeyNotFoundException ex)
+        catch (DomainException ex)
         {
             return ResultViewModel<int>.Error(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return ResultViewModel<int>.Error("Um erro inesperado aconteceu.");
         }
     }
 }
