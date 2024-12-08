@@ -4,11 +4,11 @@ using MediatR;
 
 namespace BookWise.Application.Queries.Rating.GetRatingsByBookId;
 
-public class GetRatingsByBookId : IRequestHandler<GetRatingsByBookIdQuery, ResultViewModel<List<RatingItemViewModel>>>
+public class GetRatingsByBookIdHandler : IRequestHandler<GetRatingsByBookIdQuery, ResultViewModel<List<RatingItemViewModel>>>
 {
     private readonly IRatingRepository _ratingRepository;
 
-    public GetRatingsByBookId(IRatingRepository ratingRepository)
+    public GetRatingsByBookIdHandler(IRatingRepository ratingRepository)
     {
         _ratingRepository = ratingRepository;
     }
